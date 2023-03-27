@@ -58,6 +58,21 @@ class LinkedList {
 
         return pointer;
     };
+
+    at(index) {
+        if (index >= this.length || index < 0 || typeof index !== "number") {
+            return "Error: list range exceeded!";
+        };
+
+        let pointer = this.head;
+
+        while (index > 0) {
+            pointer = pointer.nextNode;
+            index--;
+        };
+
+        return pointer;
+    };
 }
 
 class Node {
