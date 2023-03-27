@@ -157,6 +157,29 @@ class LinkedList {
         this.length++;
         return;
     };
+
+    removeAt(index) {
+        if (index >= this.length) {
+            console.log("Error: list range exceeded!");
+            return;
+        };
+
+        if (index === 0) {
+            this.head = this.length > 1 ? this.at(1) : null;
+            this.length--;
+            return;
+        };
+
+        if (index === this.length - 1) {
+            this.at(this.length - 2).nextNode = null;
+            this.length--;
+            return;
+        };
+
+        this.at(index - 1).nextNode = this.at(index + 1);
+        this.length--;
+        return;
+    };
 }
 
 class Node {
