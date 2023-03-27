@@ -22,6 +22,19 @@ class LinkedList {
             pointer = pointer.nextNode;
         }
     };
+
+    prepend(value) {
+        const tempNode = new Node(value);
+        this.length++;
+
+        if (this.length === 1) {
+            this.head = tempNode;
+            return;
+        };
+
+        tempNode.nextNode = this.head;
+        this.head = tempNode;
+    };
 }
 
 class Node {
