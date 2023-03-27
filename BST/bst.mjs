@@ -19,6 +19,19 @@ class Tree {
         
         return root;
     };
+
+    find(value) {
+        let pointer = this.root;
+
+        while(pointer !== null) {
+            if (pointer.data === value) {
+                return pointer;
+            };
+            pointer = value > pointer.data ? pointer.right : pointer.left;
+        };
+
+        return null;
+    };
 };
 
 function prettyPrint(node, prefix = '', isLeft = true) {
@@ -39,6 +52,7 @@ function prettyPrint(node, prefix = '', isLeft = true) {
 
 };
 
-const tree = new Tree([1, 3, 7, 2, 2, 3]);
-
+const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 prettyPrint(tree.root);
+
+prettyPrint(tree.find(23));
