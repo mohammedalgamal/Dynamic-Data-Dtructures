@@ -73,6 +73,17 @@ class LinkedList {
 
         return pointer;
     };
+
+    pop() {
+        if (this.length === 0) {
+            return null;
+        };
+        const last = this.tail();
+        const newLast = this.at(this.length - 2);
+        newLast.nextNode = null;
+        this.length--;
+        return last;
+    };
 }
 
 class Node {
