@@ -1,4 +1,4 @@
-# Dynamic-Data-Dtructures
+# Dynamic-Data-Structures
 ## Linked-list
 ## Balanced binary search tree (BST)
 ## Knights Travails
