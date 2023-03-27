@@ -112,6 +112,28 @@ class LinkedList {
 
         return null;
     };
+
+    toString() {
+        if (this.length === 0) {
+            return "null";
+        };
+
+        let str = "";
+        let pointer = this.head;
+
+        while (pointer !== null) {
+            str += `( ${pointer.value} ) -> `;
+
+            if (pointer.nextNode === null) {
+                str += "null";
+                break;
+            };
+
+            pointer = pointer.nextNode;
+        };
+
+        return str;
+    };
 }
 
 class Node {
