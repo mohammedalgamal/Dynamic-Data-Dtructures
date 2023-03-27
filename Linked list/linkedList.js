@@ -188,3 +188,40 @@ class Node {
         this.nextNode = nextNode;
     }
 }
+
+const list = new LinkedList();
+// list.append(5);
+// list.append(3);
+// list.removeAt(1);
+// list.removeAt(0);
+// console.log(list.toString());
+// list.append(1);
+//list.prepend(5);
+//list.prepend(2);
+//list.append(13);
+//list.prepend(139);
+//list.append(-1225);
+/*console.log(list.toString());
+console.log(list.size());
+console.log(list.getHead());
+console.log(list.tail());
+console.log(list.at(3));
+console.log(list.pop());
+console.log(list.toString());
+console.log(list.contains(13));
+console.log(list.contains(9283));
+console.log(list.find(55615));
+console.log(list.find(2));
+console.log(list.find(139));
+console.log(list.find(13));
+list.insertAt(2, 458);
+list.insertAt(0, 10);
+list.insertAt(6, 25745);
+list.insertAt(4, 54587456);
+list.insertAt(2468, 0);
+console.log(list.toString(), list.length);
+list.removeAt(0);
+list.removeAt(15);
+list.removeAt(6);
+list.removeAt(2);
+console.log(list.toString(), list.length);*/
