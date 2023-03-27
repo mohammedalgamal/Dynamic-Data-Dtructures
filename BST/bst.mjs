@@ -34,6 +34,33 @@ class Tree {
         return null;
     };
 
+    getParent(value) {
+        const node = this.find(value);
+
+        if (node === null) {
+            console.log(`Error: ${value} isn't in this tree`);
+            return null;
+        };
+
+        if (node === this.root) {
+            console.log("Error: can't get parent of root node!");
+            return node;
+        };
+
+        let parent = this.root; 
+
+        while (parent.left !== node && parent.right !== node) {
+            if (node.data > parent.data) {
+                parent = parent.right;
+            }
+            else {
+                parent = parent.left;
+            };
+        };
+
+        return parent;
+    };
+
     insert(value) {
         if (this.find(value) !== null) {
             console.log("Error: value already exists!");
@@ -65,11 +92,33 @@ class Tree {
             };
         };
     };
+
+    delete(value) {
+        let targetNode = this.find(value);
+        let parent = this.root;
+
+        if (targetNode === null) {
+            console.log("Error: value doesn't exist!");
+            return;
+        };
+
+        while (parent.left !== targetNode || parent.right !== targetNode) {
+            if (targetNode.data > parent.data) {
+                parent = parent.right;
+            }
+            else {
+                parent = parent.left;
+            };
+        };
+
+        return parent
+    };
 };
 
-const tree = new Tree([1, 7, 4, 23, 8]);
+const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 // , 9, 4, 3, 5, 7, 9, 67, 6345, 324
 tree.insert(25);
-console.log(tree);
+// console.log(tree);
 prettyPrint(tree.root);
+prettyPrint(tree.getParent(null));
 //prettyPrint(tree.find(23));
