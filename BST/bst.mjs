@@ -1,3 +1,12 @@
 import removeDuplicatesSort from "./mergeSort.mjs";
+import Node from "./node.mjs";
 
-console.log(removeDuplicatesSort([706, 706, 449, 581, 835, 189, 249, 498, 498, 549]));
+class Tree {
+    constructor(array) {
+        this.root = this.buildTree(array);
+    };
+
+    buildTree(array) {
+        return;
+    }
+}
