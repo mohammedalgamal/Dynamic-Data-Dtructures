@@ -35,6 +35,14 @@ class LinkedList {
         tempNode.nextNode = this.head;
         this.head = tempNode;
     };
+
+    size () {
+        return this.length;
+    };
+
+    getHead() {
+        return this.head;
+    };
 }
 
 class Node {
