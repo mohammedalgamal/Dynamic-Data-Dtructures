@@ -43,6 +43,21 @@ class LinkedList {
     getHead() {
         return this.head;
     };
+
+    tail() {
+        let pointer = this.head;
+
+        while (pointer !== null) {
+            
+            if (pointer.nextNode === null) {
+                break;
+            };
+
+            pointer = pointer.nextNode;
+        };
+
+        return pointer;
+    };
 }
 
 class Node {
