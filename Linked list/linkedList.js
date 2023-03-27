@@ -97,6 +97,21 @@ class LinkedList {
 
         return false;
     };
+
+    find(value) {
+        let pointer = this.head;
+        let index = 0;
+
+        while (pointer !== null) {
+            if (pointer.value === value) {
+                return index;
+            }
+            pointer = pointer.nextNode;
+            index++;
+        };
+
+        return null;
+    };
 }
 
 class Node {
