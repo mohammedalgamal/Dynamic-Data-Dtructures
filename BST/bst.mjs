@@ -1,5 +1,6 @@
 import removeDuplicatesSort from "./mergeSort.mjs";
 import Node from "./node.mjs";
+import prettyPrint from "./print.mjs";
 
 class Tree {
     constructor(array) {
@@ -32,27 +33,43 @@ class Tree {
 
         return null;
     };
+
+    insert(value) {
+        if (this.find(value) !== null) {
+            console.log("Error: value already exists!");
+            return;
+        };
+
+        let pointer = this.root;
+        const newNode = new Node(value);
+
+        if (pointer === null) {
+            this.root = newNode;
+            return;
+        };
+
+        while (pointer !== null) {
+            if (value > pointer.data) {
+                if (pointer.right === null) {
+                    pointer.right = newNode;
+                    return;
+                };
+                pointer = pointer.right;
+            }
+            else {
+                if (pointer.left === null) {
+                    pointer.left = newNode;
+                    return;
+                };
+                pointer = pointer.left;
+            };
+        };
+    };
 };
 
-function prettyPrint(node, prefix = '', isLeft = true) {
-
-    if (node === null) {
-       return;
-    };
-
-    if (node.right !== null) {
-      prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
-    };
-
-    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
-
-    if (node.left !== null) {
-      prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
-    };
-
-};
-
-const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+const tree = new Tree([1, 7, 4, 23, 8]);
+// , 9, 4, 3, 5, 7, 9, 67, 6345, 324
+tree.insert(25);
+console.log(tree);
 prettyPrint(tree.root);
-
-prettyPrint(tree.find(23));
+//prettyPrint(tree.find(23));
