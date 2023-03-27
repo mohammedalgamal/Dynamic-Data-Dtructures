@@ -19,7 +19,7 @@ function merge(arr1, arr2) {
     return result
 };
 
-export default function mergeSort(arr) {
+function mergeSort(arr) {
     if (arr.length <= 1) {
         return arr;
     }
@@ -28,4 +28,9 @@ export default function mergeSort(arr) {
             mergeSort(arr.slice(0, Math.ceil(arr.length / 2))), 
             mergeSort(arr.slice(Math.ceil(arr.length / 2))));
     }
+};
+
+export default function removeDuplicatesSort(arr) {
+    const newArr = [...new Set(arr)];
+    return mergeSort(newArr);
 };
