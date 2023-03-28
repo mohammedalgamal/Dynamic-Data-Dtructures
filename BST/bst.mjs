@@ -34,14 +34,17 @@ class Tree {
         return null;
     };
 
-    getParent(value) {
-        const node = this.find(value);
+    #getFarLeft(node) {
+        let pointer = node;
 
-        if (node === null) {
-            console.log(`Error: ${value} isn't in this tree`);
-            return null;
+        while(pointer.left !== null) {
+            pointer = pointer.left;
         };
 
+        return pointer;
+    };
+
+    #getParent(node) {
         if (node === this.root) {
             console.log("Error: can't get parent of root node!");
             return node;
@@ -60,6 +63,17 @@ class Tree {
 
         return parent;
     };
+
+    #hasOneChild(node) {
+        const firstCondition = (node.left !== node.right);
+        const secondCondition = ((node.left === null) || (node.right === null));
+
+        if (firstCondition && secondCondition) {
+            return true;
+        };
+
+        return false;
+    }
 
     insert(value) {
         if (this.find(value) !== null) {
@@ -95,20 +109,59 @@ class Tree {
 
     delete(value) {
         let targetNode = this.find(value);
-        let parent = this.root;
 
         if (targetNode === null) {
             console.log("Error: value doesn't exist!");
             return;
         };
 
-        while (parent.left !== targetNode || parent.right !== targetNode) {
+        let parent = targetNode === this.root ? this.root : this.#getParent(targetNode);
+
+        if (targetNode.left === null && targetNode.right === null) {
+            if (targetNode === this.root) {
+                this.root = null;
+                return;
+            };
+
             if (targetNode.data > parent.data) {
-                parent = parent.right;
+                parent.right = null;
+                return;
             }
             else {
-                parent = parent.left;
+                parent.left = null;
+                return;
             };
+        } 
+        else if (this.#hasOneChild(targetNode)) {
+            if (targetNode === this.root) {
+                this.root = targetNode.left === null ?
+                targetNode.right : targetNode.left;
+                return;
+            };
+            
+            if (parent.left === targetNode) {
+                parent.left = targetNode.left === null ?
+                targetNode.right : targetNode.left;
+                return;
+            }
+            else {
+                parent.right = targetNode.left === null ?
+                targetNode.right : targetNode.left;
+                return;
+            };
+        }
+        else {
+            const rightSubTree = targetNode.right;
+            const farLeft = this.#getFarLeft(rightSubTree);
+            const farLeftParent = this.#getParent(farLeft);
+            targetNode.data = farLeft.data;
+
+            if (farLeftParent === targetNode) {
+              targetNode.right = farLeft.right;
+              return;  
+            };
+        
+            farLeftParent.left = farLeft.right;
         };
 
         return parent
@@ -117,8 +170,14 @@ class Tree {
 
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 // , 9, 4, 3, 5, 7, 9, 67, 6345, 324
-tree.insert(25);
-// console.log(tree);
+//tree.insert(25);
+//tree.insert(24);
+//tree.insert(10);
+/* console.log(tree);
+tree.delete(1);
+tree.delete(324);
+tree.delete(4); */
+//tree.delete(4);
 prettyPrint(tree.root);
-prettyPrint(tree.getParent(null));
+//prettyPrint(tree.getParent(null));
 //prettyPrint(tree.find(23));
