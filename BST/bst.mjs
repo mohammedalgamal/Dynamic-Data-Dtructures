@@ -166,6 +166,37 @@ class Tree {
 
         return parent
     };
+
+    levelOrder(callBack) {
+        const fullArray = [];
+        let arrayFlag = false;
+        if (typeof callBack !== "function") {
+            arrayFlag = true;
+            callBack = function pushToFullArray(data) {
+                fullArray.push(data);
+            };
+        };
+
+        const BFSArray = [];
+        BFSArray.push(this.root);
+
+        while(BFSArray.length > 0) {
+            let pointer = BFSArray.shift();
+            callBack(pointer.data);
+            
+            if (pointer.left !== null) {
+                BFSArray.push(pointer.left);
+            };
+            
+            if (pointer.right !== null) {
+                BFSArray.push(pointer.right);
+            };
+        };
+
+        if (arrayFlag) {
+            return fullArray;
+        };
+    };
 };
 
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -178,6 +209,9 @@ tree.delete(1);
 tree.delete(324);
 tree.delete(4); */
 //tree.delete(4);
+//tree.levelOrder(x);
+//const x = function(a) {console.log(a*2)}; 
 prettyPrint(tree.root);
+//tree.levelOrder(x);
 //prettyPrint(tree.getParent(null));
 //prettyPrint(tree.find(23));
