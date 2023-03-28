@@ -168,21 +168,17 @@ class Tree {
     };
 
     levelOrder(callBack) {
-        const fullArray = [];
-        let arrayFlag = false;
-        if (typeof callBack !== "function") {
-            arrayFlag = true;
-            callBack = function pushToFullArray(data) {
-                fullArray.push(data);
-            };
+        if (this.root === null) {
+            return;
         };
 
+        const fullArray = [];
         const BFSArray = [];
         BFSArray.push(this.root);
 
         while(BFSArray.length > 0) {
             let pointer = BFSArray.shift();
-            callBack(pointer.data);
+            fullArray.push(pointer.data);
             
             if (pointer.left !== null) {
                 BFSArray.push(pointer.left);
@@ -193,10 +189,102 @@ class Tree {
             };
         };
 
-        if (arrayFlag) {
+        if (typeof callBack !== "function") {
             return fullArray;
         };
+
+        fullArray.map(callBack);
     };
+
+    preOrder(callBack) {
+        if (this.root === null) {
+            return;
+        };
+
+        const fullArray = [];
+        const DFSArray = [];
+        DFSArray.push(this.root);
+
+        while(DFSArray.length > 0) {
+            let pointer = DFSArray.pop();
+            fullArray.push(pointer.data);
+            
+            if (pointer.right !== null) {
+                DFSArray.push(pointer.right);
+            };
+
+            if (pointer.left !== null) {
+                DFSArray.push(pointer.left);
+            };
+        };
+
+        if (typeof callBack !== "function") {
+            return fullArray;
+        };
+
+        fullArray.map(callBack);
+    };
+
+    inOrder(callBack) {
+        if (this.root === null) {
+            return;
+        };
+
+        const fullArray = [];
+        const DFSArray = [];
+        let current = this.root;
+
+        while(DFSArray.length > 0 || current !== null) {
+        
+            while (current !== null) {
+                DFSArray.push(current);
+                current = current.left;
+            };
+
+            const item = DFSArray.pop();
+            fullArray.push(item.data);
+            current = item.right;
+        };
+
+        if (typeof callBack !== "function") {
+            return fullArray;
+        };
+
+        fullArray.map(callBack);
+    };
+
+    postOrder(callBack) {
+        if (this.root === null) {
+            return;
+        };
+
+        let fullArray = [];
+        const DFSArray = [];
+        DFSArray.push(this.root);
+
+        while(DFSArray.length > 0) {
+            let pointer = DFSArray.pop();
+            fullArray.push(pointer.data);
+            
+            if (pointer.left !== null) {
+                DFSArray.push(pointer.left);
+            };
+
+            if (pointer.right !== null) {
+                DFSArray.push(pointer.right);
+            };
+
+        };
+
+        fullArray = fullArray.reverse();
+
+        if (typeof callBack !== "function") {
+            return fullArray;
+        };
+
+        fullArray.map(callBack);
+      }
+    
 };
 
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -210,8 +298,9 @@ tree.delete(324);
 tree.delete(4); */
 //tree.delete(4);
 //tree.levelOrder(x);
-//const x = function(a) {console.log(a*2)}; 
+const x = function(a) {console.log(a*2)}; 
 prettyPrint(tree.root);
+console.log(tree.postOrder());
 //tree.levelOrder(x);
 //prettyPrint(tree.getParent(null));
 //prettyPrint(tree.find(23));
