@@ -73,7 +73,18 @@ class Tree {
         };
 
         return false;
-    }
+    };
+
+    #getNextLevel(array) {
+        const nextLevelNodes = [];
+
+        array.map((node) => {
+            if(node.left) nextLevelNodes.push(node.left);
+            if(node.right) nextLevelNodes.push(node.right);
+        });
+
+        return nextLevelNodes;
+    };
 
     insert(value) {
         if (this.find(value) !== null) {
@@ -283,7 +294,24 @@ class Tree {
         };
 
         fullArray.map(callBack);
-      }
+    };
+
+    height(node = this.root) {
+        if (node === null ||
+            (node.left === node.right && node.left === null)) {
+                return 0;
+        };
+
+        let nodesArray = [node];
+        let height = 0;
+
+        while(nodesArray.length > 0) {
+            nodesArray = this.#getNextLevel(nodesArray);
+            height++;
+        };
+
+        return height - 1;
+    };
     
 };
 
@@ -298,9 +326,10 @@ tree.delete(324);
 tree.delete(4); */
 //tree.delete(4);
 //tree.levelOrder(x);
-const x = function(a) {console.log(a*2)}; 
+//const x = function(a) {console.log(a*2)}; 
 prettyPrint(tree.root);
-console.log(tree.postOrder());
+console.log(tree.height());
+//console.log(tree.postOrder());
 //tree.levelOrder(x);
 //prettyPrint(tree.getParent(null));
 //prettyPrint(tree.find(23));
