@@ -312,7 +312,23 @@ class Tree {
 
         return height - 1;
     };
-    
+
+    depth(node = this.root) {
+        if (this.root === null) {
+            return 0;
+        };
+
+        let pointer = this.root;
+        const target = node;
+        let counter = 0;
+
+        while (pointer !== target) {
+            pointer = pointer.data > target.data ? pointer.left : pointer.right;
+            counter++;
+        };
+        
+        return counter;
+    };
 };
 
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -328,7 +344,8 @@ tree.delete(4); */
 //tree.levelOrder(x);
 //const x = function(a) {console.log(a*2)}; 
 prettyPrint(tree.root);
-console.log(tree.height());
+console.log(tree.depth(tree.find(324)));
+//console.log(tree.height());
 //console.log(tree.postOrder());
 //tree.levelOrder(x);
 //prettyPrint(tree.getParent(null));
