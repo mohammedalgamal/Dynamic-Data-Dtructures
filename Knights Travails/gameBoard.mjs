@@ -1,9 +1,9 @@
 export default class Board {
-    constructor() {
-        this.board = this.makeBoard();
+    constructor(currentPosition) {
+        this.board = this.makeBoard(currentPosition);
     };
 
-    makeBoard() {
+    makeBoard(currentPosition) {
         const board = [];
 
         for (let i = 0; i < 8; i++) {
@@ -14,7 +14,7 @@ export default class Board {
             board.push(tempRow);
         };
 
-        board[0][0] = 1;
+        board[currentPosition[0]][currentPosition[1]] = 1;
 
         return board;
     };
