@@ -336,22 +336,32 @@ class Tree {
         const balanceCondition = Math.abs(this.height(node.left) - this.height(node.right)) <= 1;
         return balanceCondition && this.isBalanced(node.left) && this.isBalanced(node.right);
     };
+
+    rebalance() {
+        if (this.isBalanced()) {
+            return;
+        };
+
+        this.root = this.buildTree(this.inOrder());
+    };
 };
 
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 // , 9, 4, 3, 5, 7, 9, 67, 6345, 324
-/* tree.insert(25);
-tree.insert(24);
-tree.insert(10);
-tree.insert(11); */
-/* console.log(tree);
-tree.delete(1);
-tree.delete(324);
-tree.delete(4); */
+//tree.insert(25);
+//tree.insert(24);
+//tree.insert(10);
+//tree.insert(11); 
+//console.log(tree);
+//tree.delete(1);
+//tree.delete(324);
+//tree.delete(4); 
 //tree.delete(4);
 //tree.levelOrder(x);
 //const x = function(a) {console.log(a*2)}; 
 prettyPrint(tree.root);
+//tree.rebalance();
+//prettyPrint(tree.root);
 //console.log(tree.isBalanced());
 //console.log(tree.depth(tree.find(324)));
 //console.log(tree.height());
