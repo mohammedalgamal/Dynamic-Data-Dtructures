@@ -346,7 +346,44 @@ class Tree {
     };
 };
 
-const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+/* function makeRandomArray(start = 0, end = 100, length = 20) {
+    const arr = [];
+
+    for (let i = 0; i < length; i++) {
+        arr.push(Math.floor(Math.random() * end) + start);
+    };
+
+    return arr;
+};
+
+//console.log(makeRandomArray(0, 1000, 50));
+//const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+const tree = new Tree(makeRandomArray(0, 100, 20));
+prettyPrint(tree.root);
+console.log("--------------------------------------------------------------");
+console.log(tree.isBalanced());
+console.log("--------------------------------------------------------------");
+console.log(tree.levelOrder());
+console.log(tree.preOrder());
+console.log(tree.inOrder());
+console.log(tree.postOrder());
+console.log("--------------------------------------------------------------");
+tree.insert(500);
+tree.insert(600);
+tree.insert(700);
+tree.insert(800);
+prettyPrint(tree.root);
+console.log("--------------------------------------------------------------");
+console.log(tree.isBalanced());
+tree.rebalance();
+console.log("--------------------------------------------------------------");
+prettyPrint(tree.root);
+console.log(tree.isBalanced());
+console.log("--------------------------------------------------------------");
+console.log(tree.levelOrder());
+console.log(tree.preOrder());
+console.log(tree.inOrder());
+console.log(tree.postOrder()); */
 // , 9, 4, 3, 5, 7, 9, 67, 6345, 324
 //tree.insert(25);
 //tree.insert(24);
@@ -359,7 +396,6 @@ const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 //tree.delete(4);
 //tree.levelOrder(x);
 //const x = function(a) {console.log(a*2)}; 
-prettyPrint(tree.root);
 //tree.rebalance();
 //prettyPrint(tree.root);
 //console.log(tree.isBalanced());
