@@ -1,4 +1,9 @@
 export default class Knight {
+    constructor(position) {
+        this.currentPosition = position;
+        this.nextMoves = this.getAllMoves(this.currentPosition);
+    };
+
     #isValidPosition(position) {
         if (position[0] > 7 || 
             position[0] < 0 || 
