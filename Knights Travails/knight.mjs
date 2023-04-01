@@ -1,6 +1,8 @@
+import getIndex, { getArray } from "./utils.mjs";
+
 export default class Knight {
     constructor(position) {
-        this.currentPosition = position;
+        this.currentPosition = getArray(position);
         this.nextMoves = this.getAllMoves(this.currentPosition);
     };
 
@@ -24,7 +26,7 @@ export default class Knight {
             const newPosition = [currentPosition[0] + possibleDirections[i][0], 
                                  currentPosition[1] + possibleDirections[i][1]];
             if (this.#isValidPosition(newPosition)) {
-                moves.push(newPosition);
+                moves.push(getIndex(newPosition));
             };
         };
 
